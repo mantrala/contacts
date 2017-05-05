@@ -1,1 +1,13 @@
+<div class="container">
+  <%= form_tag(upload_contacts_path, multipart: true) do %>
+    <div class="form-group">
+      <label for="file">Upload file:</label>
+      <%= file_field_tag :file, class: "form-control-file _file_upload" %>
+    </div>
+    <%= submit_tag "Submit", class: "btn btn-default btn-primary _upload", disabled: true %>
+  <% end %>
+</div>
+
+<br> <br>
+
 <%= react_component 'Main', { contacts: @contacts }  %>
