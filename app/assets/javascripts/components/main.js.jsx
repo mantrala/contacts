@@ -1,6 +1,6 @@
 var Main = React.createClass({
   getInitialState() {
-    return { contacts: this.props.contacts };
+    return { contacts: this.props.contacts, asc: true };
   },
 
   onFilterHandler: function(value) {
@@ -9,6 +9,24 @@ var Main = React.createClass({
     });
 
     this.setState({ contacts: filterContacts });
+  },
+
+  onSort: function() {
+    var sortedContacts = this.props.contacts.sort(function(a, b) {
+      var comp = 0;
+      if (a.email_address > b.email_address) {
+        comp = 1;
+      } else if (a.email_address < b.email_address) {
+        comp = -1;
+      }
+
+      return !this.state.asc ? comp : (comp * -1);
+    }.bind(this));
+
+    this.setState({ 
+      contacts: sortedContacts,
+      asc: !this.state.asc
+    });
   },
 
   render() {
@@ -20,7 +38,7 @@ var Main = React.createClass({
           <p>Total contacts: {this.state.contacts.length}</p>
         </div>
 
-        <ContactList contacts={this.state.contacts} />
+        <ContactList contacts={this.state.contacts} onSort={this.onSort} />
       </div>
     )
   }

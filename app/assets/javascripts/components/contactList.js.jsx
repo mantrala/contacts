@@ -7,6 +7,10 @@ var ContactList = React.createClass({
     });
   },
 
+  handleSort: function() {
+    this.props.onSort();
+  },
+
   render() {
     return (
       <div>
@@ -16,7 +20,7 @@ var ContactList = React.createClass({
               <th>First Name</th>
               <th>Last Name</th>
               <th>Phone Number</th>
-              <th>Email</th>
+              <th onClick={this.handleSort} role="button" className="text-primary">Email</th>
               <th>Company</th>
             </tr>
           </thead>
