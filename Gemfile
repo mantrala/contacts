@@ -14,6 +14,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '~> 5.0'
 gem 'autoprefixer-rails', '~> 6.7'
 
+gem 'rails_12factor', group: :production
+
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'sqlite3'

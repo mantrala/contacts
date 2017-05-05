@@ -22,8 +22,5 @@ test:
 
 production:
   adapter: postgresql
+  encoding: unicode
   pool: 5
-  timeout: 5000
-  database: contactually_lite_production
-  username: myapp
-  database: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
