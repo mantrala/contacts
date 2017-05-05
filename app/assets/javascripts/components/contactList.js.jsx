@@ -4,12 +4,9 @@ var ContactList = React.createClass({
   },
 
   displayContacts: function() {
-    return this.props.contacts.map(function(item) {
+    return this.state.contacts.map(function(item) {
       return (
-        <tr key={item.id}>
-          <td>{item.first_name}</td>
-          <td>{item.last_name}</td>
-        </tr>
+        <Contact key={item.id} data={item} />
       )
     });
   },
@@ -22,6 +19,9 @@ var ContactList = React.createClass({
             <tr>
               <th>First Name</th>
               <th>Last Name</th>
+              <th>Phone Number</th>
+              <th>Email</th>
+              <th>Company</th>
             </tr>
           </thead>
           <tbody>
