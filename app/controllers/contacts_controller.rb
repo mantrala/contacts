@@ -18,4 +18,12 @@ class ContactsController < ApplicationController
       redirect_to root_url, error: "Upload failed. The dev team has been notified of it."
     end
   end
+
+  def destroy
+    @contact = Contact.find(params[:id])
+    @contact.destroy
+    respond_to do |format|
+      format.json { render json: @contact, status: 204 }
+    end
+  end
 end

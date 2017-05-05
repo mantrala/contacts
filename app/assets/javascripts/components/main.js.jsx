@@ -11,6 +11,25 @@ var Main = React.createClass({
     this.setState({ contacts: filterContacts });
   },
 
+  onDeleteHandler: function(id) {
+    $.ajax({
+        url: `/contacts/${id}`,
+        type: 'DELETE',
+        success: function() {
+          this.removeContact(id);
+        }.bind(this)
+    });
+  },
+
+  removeContact(id) {
+    var newContacts = this.state.contacts;
+    newContacts = newContacts.filter(function(contact) {
+      return contact.id != id;
+    });
+
+    this.setState({ contacts: newContacts });
+  },
+
   onSort: function() {
     var sortedContacts = this.props.contacts.sort(function(a, b) {
       var comp = 0;
@@ -38,7 +57,7 @@ var Main = React.createClass({
           <p>Total contacts: {this.state.contacts.length}</p>
         </div>
 
-        <ContactList contacts={this.state.contacts} onSort={this.onSort} />
+        <ContactList contacts={this.state.contacts} onSort={this.onSort} onDeleteHandler={this.onDeleteHandler} />
       </div>
     )
   }

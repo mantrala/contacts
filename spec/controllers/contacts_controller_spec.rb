@@ -37,4 +37,17 @@ RSpec.describe ContactsController, type: :controller do
     end
   end
 
+  describe '#delete' do
+    let(:contact) { Contact.create!(first_name: 'hey', last_name: 'yo', email_address: 'a@a.com', phone_number: '1234567890', company_name: 'abc') }
+    before { delete :destroy, id: contact.id, format: :json }
+
+    it 'responds with 204' do
+      expect(response).to have_http_status(:no_content)
+    end
+
+    it 'deletes the contact' do
+      expect(Contact.count).to eq(0)
+    end
+  end
+
 end
