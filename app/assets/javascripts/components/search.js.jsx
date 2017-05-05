@@ -1,7 +1,6 @@
 var Search = React.createClass({
   search: function(e) {
     var searchValue = this.refs.search.value.trim();
-    if (searchValue.length === 0) return;
 
     this.props.onFilter(searchValue);
   },
