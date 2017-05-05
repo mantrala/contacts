@@ -1,10 +1,6 @@
 var ContactList = React.createClass({
-  getInitialState() {
-    return { contacts: this.props.contacts }
-  },
-
   displayContacts: function() {
-    return this.state.contacts.map(function(item) {
+    return this.props.contacts.map(function(item) {
       return (
         <Contact key={item.id} data={item} />
       )
