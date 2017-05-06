@@ -1,14 +1,10 @@
 var Main = React.createClass({
   getInitialState() {
-    return { contacts: this.props.contacts, asc: true };
+    return { contacts: this.props.contacts, asc: true, filterText: '' };
   },
 
   onFilterHandler: function(value) {
-    var filterContacts = this.props.contacts.filter(function(contact) {
-      return contact.email_address.includes(value);
-    });
-
-    this.setState({ contacts: filterContacts });
+    this.setState({filterText: value});
   },
 
   onDeleteHandler: function(id) {
@@ -51,13 +47,13 @@ var Main = React.createClass({
   render() {
     return (
       <div className="container">
-        <Search onFilter={this.onFilterHandler}/>
+        <Search onFilter={this.onFilterHandler} filterText={this.state.filterText}/>
 
         <div>
           <p>Total contacts: {this.state.contacts.length}</p>
         </div>
 
-        <ContactList contacts={this.state.contacts} onSort={this.onSort} onDeleteHandler={this.onDeleteHandler} />
+        <ContactList contacts={this.state.contacts} onSort={this.onSort} onDeleteHandler={this.onDeleteHandler} filterText={this.state.filterText} />
       </div>
     )
   }

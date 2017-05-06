@@ -1,8 +1,13 @@
 var ContactList = React.createClass({
   displayContacts: function() {
-    return this.props.contacts.map(function(item) {
+    var filterText = this.props.filterText;
+    return this.props.contacts.map(function(contact) {
+      if (contact.email_address.indexOf(filterText) === -1) {
+        return;
+      }
+
       return (
-        <Contact key={item.id} data={item} onDeleteHandler={this.props.onDeleteHandler} />
+        <Contact key={contact.id} data={contact} onDeleteHandler={this.props.onDeleteHandler} />
       )
     }.bind(this));
   },
