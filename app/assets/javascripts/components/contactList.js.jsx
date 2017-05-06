@@ -2,7 +2,7 @@ var ContactList = React.createClass({
   displayContacts: function() {
     var filterText = this.props.filterText;
     return this.props.contacts.map(function(contact) {
-      if (contact.email_address.indexOf(filterText) === -1) {
+      if (contact.email_address.toLowerCase().indexOf(filterText.toLowerCase()) === -1) {
         return;
       }
 
